@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSections, createSection, getNextLevelIndex } from '../services/firestore';
-import type { SubjectType, AlphabetGameType, NumberGameType, Section } from '../types';
+import type { SubjectType, AlphabetGameType, NumberGameType, ColorGameType, Section } from '../types';
 import AlphabetLevelForm from './forms/AlphabetLevelForm';
 import NumberLevelForm from './forms/NumberLevelForm';
+import ColorLevelForm from './forms/ColorLevelForm';
 import './CreateLevel.css';
 
 type Step = 'subject' | 'section' | 'gameType' | 'levelDetails';
@@ -311,8 +312,29 @@ const CreateLevel = () => {
                 </button>
               </div>
             )}
+
+            {selectedSubject === 'colors' && (
+              <div className="gametype-list" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', flexWrap: 'wrap' }}>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('colorMultipleChoice')}>
+                  <span className="gametype-name">Color Multiple Choice</span>
+                  <span className="gametype-desc">Identify the correct color</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('rocket')}>
+                  <span className="gametype-name">Rocket</span>
+                  <span className="gametype-desc">Rocket color challenge</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('matching')}>
+                  <span className="gametype-name">Matching</span>
+                  <span className="gametype-desc">Match color pairs</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('catching')}>
+                  <span className="gametype-name">Catching</span>
+                  <span className="gametype-desc">Catch the correct color</span>
+                </button>
+              </div>
+            )}
             
-            {/* TODO: Add game types for colors and shapes */}
+            {/* TODO: Add game types for shapes */}
           </div>
         );
 
@@ -333,6 +355,18 @@ const CreateLevel = () => {
           return (
             <NumberLevelForm
               gameType={selectedGameType as NumberGameType}
+              subjectId={selectedSubject}
+              sectionId={selectedSection!}
+              levelIndex={nextLevelIndex}
+              onSuccess={() => navigate('/')}
+              onCancel={handleBack}
+            />
+          );
+        }
+        if (selectedSubject === 'colors' && selectedGameType) {
+          return (
+            <ColorLevelForm
+              gameType={selectedGameType as ColorGameType}
               subjectId={selectedSubject}
               sectionId={selectedSection!}
               levelIndex={nextLevelIndex}
