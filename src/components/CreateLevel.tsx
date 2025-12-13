@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSections, createSection, getNextLevelIndex } from '../services/firestore';
-import type { SubjectType, AlphabetGameType, NumberGameType, ColorGameType, Section } from '../types';
+import type { SubjectType, AlphabetGameType, NumberGameType, ColorGameType, ShapeGameType, Section } from '../types';
 import AlphabetLevelForm from './forms/AlphabetLevelForm';
 import NumberLevelForm from './forms/NumberLevelForm';
 import ColorLevelForm from './forms/ColorLevelForm';
+import ShapeLevelForm from './forms/ShapeLevelForm';
 import './CreateLevel.css';
 
 type Step = 'subject' | 'section' | 'gameType' | 'levelDetails';
@@ -333,8 +334,27 @@ const CreateLevel = () => {
                 </button>
               </div>
             )}
-            
-            {/* TODO: Add game types for shapes */}
+
+            {selectedSubject === 'shapes' && (
+              <div className="gametype-list" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', flexWrap: 'wrap' }}>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('shapesMultipleChoice')}>
+                  <span className="gametype-name">Shapes Multiple Choice</span>
+                  <span className="gametype-desc">Identify the correct shape</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('rocketShapes')}>
+                  <span className="gametype-name">Rocket Shapes</span>
+                  <span className="gametype-desc">Rocket shape challenge</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('catching')}>
+                  <span className="gametype-name">Catching</span>
+                  <span className="gametype-desc">Catch the correct shape</span>
+                </button>
+                <button className="gametype-card" onClick={() => handleGameTypeSelect('racing')}>
+                  <span className="gametype-name">Racing</span>
+                  <span className="gametype-desc">Race to match shapes</span>
+                </button>
+              </div>
+            )}
           </div>
         );
 
@@ -367,6 +387,18 @@ const CreateLevel = () => {
           return (
             <ColorLevelForm
               gameType={selectedGameType as ColorGameType}
+              subjectId={selectedSubject}
+              sectionId={selectedSection!}
+              levelIndex={nextLevelIndex}
+              onSuccess={() => navigate('/')}
+              onCancel={handleBack}
+            />
+          );
+        }
+        if (selectedSubject === 'shapes' && selectedGameType) {
+          return (
+            <ShapeLevelForm
+              gameType={selectedGameType as ShapeGameType}
               subjectId={selectedSubject}
               sectionId={selectedSection!}
               levelIndex={nextLevelIndex}
