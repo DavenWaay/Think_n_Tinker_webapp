@@ -186,3 +186,201 @@ body {
 .list-item:hover {
   background-color: #f9f9f9;
 }
+/* Delete Level Styles */
+.delete-level-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.delete-level-container .header {
+  margin-bottom: 2rem;
+}
+
+.delete-level-container .breadcrumb {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.delete-level-container .breadcrumb span {
+  text-transform: capitalize;
+}
+
+.selection-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.selection-grid h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.selection-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-card:hover {
+  border-color: #3498db;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.selection-card strong {
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.selection-card small {
+  color: #7f8c8d;
+}
+
+.confirm-delete {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.confirm-delete h2 {
+  color: #e74c3c;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.warning-box {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  color: #856404;
+}
+
+.warning-box p {
+  margin-bottom: 0.5rem;
+}
+
+.warning-box p:last-child {
+  margin-bottom: 0;
+}
+
+.level-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.level-details h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.level-details p {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.level-details strong {
+  color: #2c3e50;
+  margin-right: 0.5rem;
+}
+
+.stages-preview {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.stages-preview ul {
+  list-style: none;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.stages-preview li {
+  padding: 0.25rem 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+.btn-danger:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.btn-back {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+  background-color: #5a6268;
+}
+
+.error-message {
+  background-color: #fee;
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: #c0392b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-message button {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

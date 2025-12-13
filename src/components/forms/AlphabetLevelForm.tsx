@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { createLevel } from '../../services/firestore';
 import type { AlphabetGameType, AlphabetStageData, SubjectType } from '../../types';
 import './AlphabetLevelForm.css';
@@ -10,19 +10,32 @@ interface Props {
   levelIndex: number;
   onSuccess: () => void;
   onCancel: () => void;
+  // Optional: for edit mode
+  initialData?: {
+    levelName: string;
+    levelTitle: string;
+    iconSet: string;
+    iconName: string;
+    stages: AlphabetStageData[];
+  };
+  isEditMode?: boolean;
+  levelId?: string;
 }
 
-const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess, onCancel }: Props) => {
-  const [levelName, setLevelName] = useState('');
-  const [levelTitle, setLevelTitle] = useState('');
-  const [iconSet, setIconSet] = useState('MaterialIcons');
-  const [iconName, setIconName] = useState('star');
-  const [stages, setStages] = useState<AlphabetStageData[]>([]);
+const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess, onCancel, initialData, isEditMode = false, levelId }: Props) => {
+  const [levelName, setLevelName] = useState(initialData?.levelName || '');
+  const [levelTitle, setLevelTitle] = useState(initialData?.levelTitle || '');
+  const [iconSet, setIconSet] = useState(initialData?.iconSet || 'MaterialIcons');
+  const [iconName, setIconName] = useState(initialData?.iconName || 'star');
+  const [stages, setStages] = useState<AlphabetStageData[]>(initialData?.stages || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Current stage being edited
   const [currentStage, setCurrentStage] = useState<Partial<AlphabetStageData>>({});
+  
+  // Track which stage index is being edited (null means adding new stage)
+  const [editingStageIndex, setEditingStageIndex] = useState<number | null>(null);
   
   // For mixed gameType: track the selected gameType for the current stage
   const [currentStageGameType, setCurrentStageGameType] = useState<AlphabetGameType>(gameType === 'mixed' ? 'phonics' : gameType);
@@ -35,21 +48,30 @@ const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSucce
   const [isVowels, setIsVowels] = useState(false);
 
   const handleAddStage = () => {
-    // For catching gameType, only allow one stage
-    if (gameType === 'catching' && stages.length >= 1) {
+    // For catching gameType, only allow one stage (unless editing)
+    if (gameType === 'catching' && stages.length >= 1 && editingStageIndex === null) {
       setError('Catching game type only allows one stage');
       return;
     }
 
     if (isStageValid(currentStage)) {
       // Add gameType to the stage before saving
-      // For mixed levels, use the selected currentStageGameType, otherwise use the level's gameType
       const stageWithGameType = {
         ...currentStage,
         gameType: gameType === 'mixed' ? currentStageGameType : gameType
       } as AlphabetStageData;
       
-      setStages([...stages, stageWithGameType]);
+      if (editingStageIndex !== null) {
+        // Update existing stage
+        const updatedStages = [...stages];
+        updatedStages[editingStageIndex] = stageWithGameType;
+        setStages(updatedStages);
+        setEditingStageIndex(null);
+      } else {
+        // Add new stage
+        setStages([...stages, stageWithGameType]);
+      }
+      
       setCurrentStage({});
       setChoicesInput('');
       setPairsInput('');
@@ -63,6 +85,36 @@ const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSucce
       setError(null);
     } else {
       setError('Please fill in all required fields for the stage');
+    }
+  };
+
+  const handleEditStage = (index: number) => {
+    const stage = stages[index];
+    setCurrentStage(stage);
+    setEditingStageIndex(index);
+    
+    // Set the gameType for mixed levels
+    if (gameType === 'mixed' && stage.gameType) {
+      setCurrentStageGameType(stage.gameType);
+    }
+    
+    // Populate input fields based on stage data
+    if (stage.choices) setChoicesInput(stage.choices.join(', '));
+    if (stage.pairs) setPairsInput(stage.pairs.join(', '));
+    if (stage.strokeOrder) setStrokeOrderInput(stage.strokeOrder.join(', '));
+    if (stage.soundPairs) setSoundPairsInput(stage.soundPairs.map(p => p.letter).join(', '));
+  };
+
+  const handleCancelEdit = () => {
+    setCurrentStage({});
+    setEditingStageIndex(null);
+    setChoicesInput('');
+    setPairsInput('');
+    setStrokeOrderInput('');
+    setSoundPairsInput('');
+    setIsVowels(false);
+    if (gameType === 'mixed') {
+      setCurrentStageGameType('phonics');
     }
   };
 
@@ -108,19 +160,34 @@ const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSucce
     setError(null);
 
     try {
-      await createLevel(subjectId, sectionId, {
-        name: levelName,
-        title: levelTitle,
-        icon: {
-          set: iconSet,
-          name: iconName,
-        },
-        gameType,
-        stages,
-      });
+      if (isEditMode && levelId) {
+        // Use updateLevel for edit mode
+        const { updateLevel } = await import('../../services/firestore');
+        await updateLevel(subjectId, sectionId, levelId, {
+          name: levelName,
+          title: levelTitle,
+          icon: {
+            set: iconSet,
+            name: iconName,
+          },
+          stages,
+        });
+      } else {
+        // Use createLevel for create mode
+        await createLevel(subjectId, sectionId, {
+          name: levelName,
+          title: levelTitle,
+          icon: {
+            set: iconSet,
+            name: iconName,
+          },
+          gameType,
+          stages,
+        });
+      }
       onSuccess();
     } catch (err) {
-      setError('Failed to create level');
+      setError(isEditMode ? 'Failed to update level' : 'Failed to create level');
       console.error(err);
     } finally {
       setLoading(false);
@@ -558,31 +625,61 @@ const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSucce
         {stages.length > 0 && (
           <div className="stages-list">
             {stages.map((stage, index) => (
-              <div key={index} className="stage-item">
-                <div className="stage-info">
-                  <strong>Stage {index + 1}</strong>
-                  <span>{stage.correctLetter || stage.letter || 'Configured'}</span>
+              <React.Fragment key={index}>
+                <div className="stage-item">
+                  <div className="stage-info">
+                    <strong>Stage {index + 1}</strong>
+                    <span>{stage.correctLetter || stage.letter || 'Configured'}</span>
+                  </div>
+                  <div className="stage-actions">
+                    <button 
+                      className="btn-edit"
+                      onClick={() => handleEditStage(index)}
+                      disabled={editingStageIndex === index}
+                    >
+                      {editingStageIndex === index ? 'Editing...' : 'Edit'}
+                    </button>
+                    <button 
+                      className="btn-remove"
+                      onClick={() => handleRemoveStage(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-                <button 
-                  className="btn-remove"
-                  onClick={() => handleRemoveStage(index)}
-                >
-                  Remove
-                </button>
-              </div>
+                {editingStageIndex === index && (
+                  <>
+                    <div className="editing-notice">
+                      ✏️ Editing Stage {editingStageIndex + 1}
+                      <button className="btn-cancel-edit" onClick={handleCancelEdit}>Cancel Edit</button>
+                    </div>
+                    {renderStageForm()}
+                    <button 
+                      className="btn btn-secondary"
+                      onClick={handleAddStage}
+                      style={{ marginTop: '1rem', width: '100%', marginBottom: '1rem' }}
+                    >
+                      ✓ Update Stage
+                    </button>
+                  </>
+                )}
+              </React.Fragment>
             ))}
           </div>
         )}
 
-        {renderStageForm()}
-
-        <button 
-          className="btn btn-secondary"
-          onClick={handleAddStage}
-          style={{ marginTop: '1rem', width: '100%' }}
-        >
-          ✓ Confirm & Add Stage
-        </button>
+        {editingStageIndex === null && (
+          <>
+            {renderStageForm()}
+            <button 
+              className="btn btn-secondary"
+              onClick={handleAddStage}
+              style={{ marginTop: '1rem', width: '100%' }}
+            >
+              ✓ Confirm & Add Stage
+            </button>
+          </>
+        )}
       </div>
 
       <div className="form-actions">
@@ -591,7 +688,7 @@ const AlphabetLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSucce
           onClick={handleSaveLevel}
           disabled={loading || stages.length === 0}
         >
-          {loading ? 'Saving...' : 'Create Level'}
+          {loading ? 'Saving...' : (isEditMode ? 'Update Level' : 'Create Level')}
         </button>
         <button
           className="btn btn-outline"

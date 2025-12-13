@@ -1,0 +1,268 @@
+.view-levels {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.view-levels-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.view-levels-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.subject-selection {
+  margin: 2rem 0;
+}
+
+.subject-selection h2 {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 1.5rem;
+}
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.subject-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subject-card:hover {
+  border-color: #3498db;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.subject-icon {
+  font-size: 3rem;
+}
+
+.subject-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.sections-tree {
+  margin: 2rem 0;
+}
+
+.section-node {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #f8f9fa;
+  transition: background 0.2s;
+}
+
+.section-header:hover {
+  background: #e9ecef;
+}
+
+.expand-icon {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.section-info {
+  flex: 1;
+}
+
+.section-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.3rem;
+}
+
+.section-info p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.section-info small {
+  color: #777;
+  font-style: italic;
+}
+
+.level-count {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: #3498db;
+  color: white;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.levels-list {
+  padding: 1rem 1.5rem 1.5rem 3rem;
+  background: #fafbfc;
+}
+
+.level-node {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.level-header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.level-index {
+  background: #2ecc71;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.level-info {
+  flex: 1;
+}
+
+.level-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.level-info p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.game-type-badge {
+  display: inline-block;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.25rem 0.75rem;
+  background: #9b59b6;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.icon-info {
+  display: inline-block;
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.75rem;
+  background: #f39c12;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.stages-info {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.stages-info strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #34495e;
+  font-size: 1rem;
+}
+
+.stages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stage-info {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-left: 3px solid #3498db;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+
+.stage-info strong {
+  color: #2c3e50;
+  margin-right: 0.5rem;
+}
+
+.stage-info span {
+  margin-right: 1rem;
+  color: #555;
+}
+
+.empty-levels {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+.empty-state {
+  padding: 3rem;
+  text-align: center;
+  color: #999;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.view-levels-footer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #ecf0f1;
+  display: flex;
+  justify-content: center;
+}

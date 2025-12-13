@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { createLevel } from '../../services/firestore';
 import type { NumberGameType, NumberStageData, SubjectType } from '../../types';
 import './AlphabetLevelForm.css';
@@ -10,44 +10,79 @@ interface Props {
   levelIndex: number;
   onSuccess: () => void;
   onCancel: () => void;
+  // Optional: for edit mode
+  initialData?: {
+    levelName: string;
+    levelTitle: string;
+    iconSet: string;
+    iconName: string;
+    stages: NumberStageData[];
+  };
+  isEditMode?: boolean;
+  levelId?: string;
 }
 
-const NumberLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess, onCancel }: Props) => {
-  const [levelName, setLevelName] = useState('');
-  const [levelTitle, setLevelTitle] = useState('');
-  const [iconSet, setIconSet] = useState('MaterialIcons');
-  const [iconName, setIconName] = useState('star');
-  const [stages, setStages] = useState<NumberStageData[]>([]);
+const NumberLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess, onCancel, initialData, isEditMode = false, levelId }: Props) => {
+  const [levelName, setLevelName] = useState(initialData?.levelName || '');
+  const [levelTitle, setLevelTitle] = useState(initialData?.levelTitle || '');
+  const [iconSet, setIconSet] = useState(initialData?.iconSet || 'MaterialIcons');
+  const [iconName, setIconName] = useState(initialData?.iconName || 'looks-one');
+  const [stages, setStages] = useState<NumberStageData[]>(initialData?.stages || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Current stage being edited
   const [currentStage, setCurrentStage] = useState<Partial<NumberStageData>>({});
   
+  // Track which stage index is being edited (null means adding new stage)
+  const [editingStageIndex, setEditingStageIndex] = useState<number | null>(null);
+  
   // Raw string inputs for comma-separated fields
   const [choicesInput, setChoicesInput] = useState('');
 
   const handleAddStage = () => {
-    // For catching gameType, only allow one stage
-    if (gameType === 'catching' && stages.length >= 1) {
+    // For catching gameType, only allow one stage (unless editing)
+    if (gameType === 'catching' && stages.length >= 1 && editingStageIndex === null) {
       setError('Catching game type only allows one stage');
       return;
     }
 
     if (isStageValid(currentStage)) {
-      // Add gameType to the stage before saving
       const stageWithGameType = {
         ...currentStage,
         gameType: gameType
       } as NumberStageData;
       
-      setStages([...stages, stageWithGameType]);
+      if (editingStageIndex !== null) {
+        // Update existing stage
+        const updatedStages = [...stages];
+        updatedStages[editingStageIndex] = stageWithGameType;
+        setStages(updatedStages);
+        setEditingStageIndex(null);
+      } else {
+        // Add new stage
+        setStages([...stages, stageWithGameType]);
+      }
+      
       setCurrentStage({});
       setChoicesInput('');
       setError(null);
     } else {
       setError('Please fill in all required fields correctly');
     }
+  };
+
+  const handleEditStage = (index: number) => {
+    const stage = stages[index];
+    setCurrentStage(stage);
+    setEditingStageIndex(index);
+    if (stage.choices) setChoicesInput(stage.choices.join(', '));
+  };
+
+  const handleCancelEdit = () => {
+    setCurrentStage({});
+    setEditingStageIndex(null);
+    setChoicesInput('');
   };
 
   const handleRemoveStage = (index: number) => {
@@ -87,19 +122,32 @@ const NumberLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess
     setError(null);
 
     try {
-      await createLevel(subjectId, sectionId, {
-        name: levelName,
-        title: levelTitle,
-        icon: {
-          set: iconSet,
-          name: iconName,
-        },
-        gameType,
-        stages,
-      });
+      if (isEditMode && levelId) {
+        const { updateLevel } = await import('../../services/firestore');
+        await updateLevel(subjectId, sectionId, levelId, {
+          name: levelName,
+          title: levelTitle,
+          icon: {
+            set: iconSet,
+            name: iconName,
+          },
+          stages,
+        });
+      } else {
+        await createLevel(subjectId, sectionId, {
+          name: levelName,
+          title: levelTitle,
+          icon: {
+            set: iconSet,
+            name: iconName,
+          },
+          gameType,
+          stages,
+        });
+      }
       onSuccess();
     } catch (err) {
-      setError('Failed to create level');
+      setError(isEditMode ? 'Failed to update level' : 'Failed to create level');
       console.error(err);
     } finally {
       setLoading(false);
@@ -261,36 +309,67 @@ const NumberLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess
         <div className="stages-list" style={{ margin: '2rem 0' }}>
           <h3>Configured Stages ({stages.length})</h3>
           {stages.map((stage, index) => (
-            <div key={index} className="stage-item">
-              <div className="stage-details" style={{ color: '#2c3e50' }}>
-                <strong>Stage {index + 1}</strong>
-                {stage.gameType && <span className="stage-type">{stage.gameType === 'dragndrop' ? 'Drag and Drop' : stage.gameType}</span>}
-                {stage.correctAnswer && <span>Answer: {stage.correctAnswer}</span>}
-                {stage.correctCount && <span>Count: {stage.correctCount}</span>}
-                {stage.correctNumber && <span>Number: {stage.correctNumber}</span>}
+            <React.Fragment key={index}>
+              <div className="stage-item">
+                <div className="stage-details" style={{ color: '#2c3e50' }}>
+                  <strong>Stage {index + 1}</strong>
+                  {stage.gameType && <span className="stage-type">{stage.gameType === 'dragndrop' ? 'Drag and Drop' : stage.gameType}</span>}
+                  {stage.correctAnswer && <span>Answer: {stage.correctAnswer}</span>}
+                  {stage.correctCount && <span>Count: {stage.correctCount}</span>}
+                  {stage.correctNumber && <span>Number: {stage.correctNumber}</span>}
+                </div>
+                <div className="stage-actions">
+                  <button 
+                    className="btn-edit"
+                    onClick={() => handleEditStage(index)}
+                    disabled={editingStageIndex === index}
+                  >
+                    {editingStageIndex === index ? 'Editing...' : 'Edit'}
+                  </button>
+                  <button onClick={() => handleRemoveStage(index)}>Remove</button>
+                </div>
               </div>
-              <button onClick={() => handleRemoveStage(index)}>Remove</button>
-            </div>
+              {editingStageIndex === index && (
+                <>
+                  <div className="editing-notice">
+                    ✏️ Editing Stage {editingStageIndex + 1}
+                    <button className="btn-cancel-edit" onClick={handleCancelEdit}>Cancel Edit</button>
+                  </div>
+                  {renderStageForm()}
+                  <button 
+                    className="btn-secondary" 
+                    onClick={handleAddStage}
+                    style={{ marginTop: '1rem', width: '100%', marginBottom: '1rem' }}
+                  >
+                    ✓ Update Stage
+                  </button>
+                </>
+              )}
+            </React.Fragment>
           ))}
         </div>
       )}
 
       <div className="stages-section">
         <h3>Stages</h3>
-        {renderStageForm()}
-        <button 
-          className="btn-secondary" 
-          onClick={handleAddStage}
-          disabled={gameType === 'catching' && stages.length >= 1}
-        >
-          ✓ Confirm & Add Stage
-        </button>
+        {editingStageIndex === null && (
+          <>
+            {renderStageForm()}
+            <button 
+              className="btn-secondary" 
+              onClick={handleAddStage}
+              disabled={gameType === 'catching' && stages.length >= 1 && editingStageIndex === null}
+            >
+              ✓ Confirm & Add Stage
+            </button>
+          </>
+        )}
       </div>
 
       <div className="form-actions">
         <button onClick={onCancel} className="btn-secondary">Cancel</button>
         <button onClick={handleSaveLevel} disabled={loading} className="btn-primary">
-          {loading ? 'Saving...' : 'Create Level'}
+          {loading ? 'Saving...' : (isEditMode ? 'Update Level' : 'Create Level')}
         </button>
       </div>
     </div>

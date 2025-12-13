@@ -81,6 +81,11 @@
   border: 2px solid #ecf0f1;
   border-radius: 8px;
   margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.stage-item:hover {
+  border-color: #3498db;
 }
 
 .stage-info {
@@ -96,6 +101,59 @@
 .stage-info span {
   color: #7f8c8d;
   font-size: 0.9rem;
+}
+
+.stage-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit {
+  padding: 0.5rem 1rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.btn-edit:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.btn-edit:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.editing-notice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.btn-cancel-edit {
+  padding: 0.4rem 0.8rem;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+}
+
+.btn-cancel-edit:hover {
+  background: #5a6268;
 }
 
 .btn-remove {
