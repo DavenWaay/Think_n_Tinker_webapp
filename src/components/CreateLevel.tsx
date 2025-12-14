@@ -274,10 +274,6 @@ const CreateLevel = () => {
                   <span className="gametype-name">Image</span>
                   <span className="gametype-desc">Match letter with image</span>
                 </button>
-                <button className="gametype-card" onClick={() => handleGameTypeSelect('tracing')}>
-                  <span className="gametype-name">Tracing</span>
-                  <span className="gametype-desc">Trace letter shapes</span>
-                </button>
                 <button className="gametype-card" onClick={() => handleGameTypeSelect('cards')}>
                   <span className="gametype-name">Cards</span>
                   <span className="gametype-desc">Memory card matching</span>
@@ -298,7 +294,7 @@ const CreateLevel = () => {
             )}
 
             {selectedSubject === 'numbers' && (
-              <div className="gametype-list" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', flexWrap: 'wrap' }}>
+              <div className="gametype-grid">
                 <button className="gametype-card" onClick={() => handleGameTypeSelect('counting')}>
                   <span className="gametype-name">Counting</span>
                   <span className="gametype-desc">Count objects</span>
@@ -315,7 +311,7 @@ const CreateLevel = () => {
             )}
 
             {selectedSubject === 'colors' && (
-              <div className="gametype-list" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', flexWrap: 'wrap' }}>
+              <div className="gametype-grid">
                 <button className="gametype-card" onClick={() => handleGameTypeSelect('colorMultipleChoice')}>
                   <span className="gametype-name">Color Multiple Choice</span>
                   <span className="gametype-desc">Identify the correct color</span>
@@ -336,7 +332,7 @@ const CreateLevel = () => {
             )}
 
             {selectedSubject === 'shapes' && (
-              <div className="gametype-list" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', flexWrap: 'wrap' }}>
+              <div className="gametype-grid">
                 <button className="gametype-card" onClick={() => handleGameTypeSelect('shapesMultipleChoice')}>
                   <span className="gametype-name">Shapes Multiple Choice</span>
                   <span className="gametype-desc">Identify the correct shape</span>

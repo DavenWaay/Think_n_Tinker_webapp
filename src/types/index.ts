@@ -5,7 +5,6 @@
 export type AlphabetGameType = 
   | 'mixed' 
   | 'phonics' 
-  | 'tracing' 
   | 'cards' 
   | 'image' 
   | 'sound' 

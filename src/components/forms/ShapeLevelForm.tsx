@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createLevel } from '../../services/firestore';
 import type { ShapeGameType, ShapeStageData, SubjectType } from '../../types';
+import { shapeGameTypeIcons } from '../../utils/gameTypeIcons';
 import './AlphabetLevelForm.css';
 
 interface Props {
@@ -14,8 +15,6 @@ interface Props {
   initialData?: {
     levelName: string;
     levelTitle: string;
-    iconSet: string;
-    iconName: string;
     stages: ShapeStageData[];
   };
   isEditMode?: boolean;
@@ -51,8 +50,6 @@ const CATCH_SHAPES = [
 const ShapeLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess, onCancel, initialData, isEditMode = false, levelId }: Props) => {
   const [levelName, setLevelName] = useState(initialData?.levelName || '');
   const [levelTitle, setLevelTitle] = useState(initialData?.levelTitle || '');
-  const [iconSet, setIconSet] = useState(initialData?.iconSet || 'MaterialIcons');
-  const [iconName, setIconName] = useState(initialData?.iconName || 'change-history');
   const [stages, setStages] = useState<ShapeStageData[]>(initialData?.stages || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -135,26 +132,23 @@ const ShapeLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess,
     setLoading(true);
     setError(null);
 
+    // Get icon automatically based on game type
+    const icon = shapeGameTypeIcons[gameType];
+
     try {
       if (isEditMode && levelId) {
         const { updateLevel } = await import('../../services/firestore');
         await updateLevel(subjectId, sectionId, levelId, {
           name: levelName,
           title: levelTitle,
-          icon: {
-            set: iconSet,
-            name: iconName,
-          },
+          icon,
           stages,
         });
       } else {
         await createLevel(subjectId, sectionId, {
           name: levelName,
           title: levelTitle,
-          icon: {
-            set: iconSet,
-            name: iconName,
-          },
+          icon,
           gameType,
           stages,
         });
@@ -304,24 +298,10 @@ const ShapeLevelForm = ({ gameType, subjectId, sectionId, levelIndex, onSuccess,
             placeholder="e.g., Learn Basic Shapes"
           />
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Icon Set</label>
-            <select value={iconSet} onChange={(e) => setIconSet(e.target.value)}>
-              <option value="MaterialIcons">MaterialIcons</option>
-              <option value="FontAwesome5">FontAwesome5</option>
-              <option value="Ionicons">Ionicons</option>
-              <option value="MaterialCommunityIcons">MaterialCommunityIcons</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Icon Name</label>
-            <input
-              type="text"
-              value={iconName}
-              onChange={(e) => setIconName(e.target.value)}
-              placeholder="change-history"
-            />
+        <div className="form-group">
+          <label>Icon (Auto-assigned)</label>
+          <div style={{ padding: '0.75rem', backgroundColor: '#f0f0f0', borderRadius: '4px', color: '#666' }}>
+            {shapeGameTypeIcons[gameType].set}: {shapeGameTypeIcons[gameType].name}
           </div>
         </div>
       </div>

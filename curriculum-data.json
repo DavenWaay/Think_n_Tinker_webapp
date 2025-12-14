@@ -1,0 +1,823 @@
+{
+  "subjects": {
+    "alphabet": {
+      "name": "Alphabet",
+      "description": "Letter recognition, phonics, and beginning sounds",
+      "sections": {
+        "section1": {
+          "id": "section1",
+          "name": "Introduction to Vowels",
+          "title": "Learning A, E, I, O, U",
+          "description": "Introduce vowel recognition, short vowel sounds, and image association",
+          "sectionNumber": 1,
+          "targetConcepts": ["A", "E", "I", "O", "U"],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Letter recognition (uppercase & lowercase)",
+            "Phonics sound only (short vowel sounds)",
+            "Image association"
+          ],
+          "spacedRepetitionStrategy": "Levels 1-3: A & E | Levels 4-6: I & O (A & E still appear) | Levels 7-8: U (all vowels) | Levels 9-10: Mixed review",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Meet Letter A",
+              "title": "Introduction to A",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-a-circle" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Meet Letter E",
+              "title": "Introduction to E",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-e-circle" },
+              "stages": [
+                { "correctLetter": "E", "choices": ["E", "A", "I", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "A & E Together",
+              "title": "Practice A and E",
+              "gameType": "image",
+              "icon": { "set": "MaterialCommunityIcons", "name": "image" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I"] },
+                { "correctLetter": "E", "choices": ["E", "A", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Letter I",
+              "title": "Introduction to I",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-i-circle" },
+              "stages": [
+                { "correctLetter": "I", "choices": ["I", "A", "E", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "Meet Letter O",
+              "title": "Introduction to O",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-o-circle" },
+              "stages": [
+                { "correctLetter": "O", "choices": ["O", "A", "E", "I"] }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Vowel Mix A-E-I-O",
+              "title": "Practice Four Vowels",
+              "gameType": "tracing",
+              "icon": { "set": "MaterialCommunityIcons", "name": "draw" },
+              "stages": [
+                { "letter": "A" },
+                { "letter": "E" },
+                { "letter": "I" },
+                { "letter": "O" }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "Meet Letter U",
+              "title": "Introduction to U",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-u-circle" },
+              "stages": [
+                { "correctLetter": "U", "choices": ["U", "A", "E", "I", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "All Five Vowels",
+              "title": "Practice All Vowels",
+              "gameType": "sound",
+              "icon": { "set": "MaterialCommunityIcons", "name": "volume-high" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I"] },
+                { "correctLetter": "E", "choices": ["E", "A", "O"] },
+                { "correctLetter": "I", "choices": ["I", "E", "U"] },
+                { "correctLetter": "O", "choices": ["O", "A", "U"] },
+                { "correctLetter": "U", "choices": ["U", "I", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "Catch Vowels",
+              "title": "Catch A, E, I, O, U",
+              "gameType": "catching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "hand-front-right" },
+              "stages": [
+                { "correctLetter": "vowels", "correctLetters": ["A", "E", "I", "O", "U"], "choices": ["A", "E", "I", "O", "U"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "Vowel Master",
+              "title": "Final Vowel Test",
+              "gameType": "matching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I", "O", "U", "B"] },
+                { "correctLetter": "E", "choices": ["E", "A", "I", "O", "U", "C"] },
+                { "correctLetter": "I", "choices": ["I", "A", "E", "O", "U", "D"] },
+                { "correctLetter": "O", "choices": ["O", "A", "E", "I", "U", "F"] },
+                { "correctLetter": "U", "choices": ["U", "A", "E", "I", "O", "G"] }
+              ]
+            }
+          ]
+        },
+        "section2": {
+          "id": "section2",
+          "name": "Introduction to Consonants (A-D)",
+          "title": "Learning A, B, C, D",
+          "description": "Introduce consonants with letter names, phonics, and beginning sounds",
+          "sectionNumber": 2,
+          "targetConcepts": ["A", "B", "C", "D"],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Letter names + phonics",
+            "Beginning sounds",
+            "Image matching"
+          ],
+          "spacedRepetitionStrategy": "Vowels from Section 1 appear as distractors. A is reused to bridge vowel → consonant transition.",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Review Letter A",
+              "title": "Bridge from Vowels",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-a-circle" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I", "B"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Meet Letter B",
+              "title": "Introduction to B",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-b-circle" },
+              "stages": [
+                { "correctLetter": "B", "choices": ["B", "A", "D", "E"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "A & B Together",
+              "title": "Practice A and B",
+              "gameType": "image",
+              "icon": { "set": "MaterialCommunityIcons", "name": "image" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "B", "E"] },
+                { "correctLetter": "B", "choices": ["B", "A", "D"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Letter C",
+              "title": "Introduction to C",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-c-circle" },
+              "stages": [
+                { "correctLetter": "C", "choices": ["C", "A", "B", "O"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "A, B & C Mix",
+              "title": "Practice Three Letters",
+              "gameType": "cards",
+              "icon": { "set": "MaterialCommunityIcons", "name": "cards" },
+              "stages": [
+                { "letter": "A" },
+                { "letter": "B" },
+                { "letter": "C" }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Meet Letter D",
+              "title": "Introduction to D",
+              "gameType": "phonics",
+              "icon": { "set": "MaterialCommunityIcons", "name": "alpha-d-circle" },
+              "stages": [
+                { "correctLetter": "D", "choices": ["D", "B", "A", "E"] }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "Trace A-B-C-D",
+              "title": "Write All Four Letters",
+              "gameType": "tracing",
+              "icon": { "set": "MaterialCommunityIcons", "name": "draw" },
+              "stages": [
+                { "letter": "A" },
+                { "letter": "B" },
+                { "letter": "C" },
+                { "letter": "D" }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "Letter Sounds A-D",
+              "title": "Practice Beginning Sounds",
+              "gameType": "sound",
+              "icon": { "set": "MaterialCommunityIcons", "name": "volume-high" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "E", "I"] },
+                { "correctLetter": "B", "choices": ["B", "D", "A"] },
+                { "correctLetter": "C", "choices": ["C", "A", "O"] },
+                { "correctLetter": "D", "choices": ["D", "B", "E"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "A-D Challenge",
+              "title": "Mixed Review",
+              "gameType": "matching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "B", "C", "D", "E", "I"] },
+                { "correctLetter": "B", "choices": ["B", "A", "C", "D", "O", "U"] },
+                { "correctLetter": "C", "choices": ["C", "A", "B", "D", "E", "O"] },
+                { "correctLetter": "D", "choices": ["D", "A", "B", "C", "I", "U"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "A-D Master",
+              "title": "Final Test",
+              "gameType": "mixed",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "correctLetter": "A", "choices": ["A", "B", "C", "D"] },
+                { "correctLetter": "B", "choices": ["B", "A", "C", "D"] },
+                { "correctLetter": "C", "choices": ["C", "A", "B", "D"] },
+                { "correctLetter": "D", "choices": ["D", "A", "B", "C"] }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "numbers": {
+      "name": "Numbers",
+      "description": "Number recognition, counting, and quantity comparison",
+      "sections": {
+        "section1": {
+          "id": "section1",
+          "name": "Introduction to Numbers 1-3",
+          "title": "Learning 1, 2, 3",
+          "description": "Introduce number recognition, counting objects, and quantity comparison",
+          "sectionNumber": 1,
+          "targetConcepts": [1, 2, 3],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Number recognition",
+            "Counting objects",
+            "Quantity comparison"
+          ],
+          "spacedRepetitionStrategy": "Levels 1-3: Number 1 only | Levels 4-6: Numbers 1 & 2 | Levels 7-8: Numbers 1, 2 & 3 | Levels 9-10: Mixed counting",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Meet Number 1",
+              "title": "One Object",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-1-circle" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Practice Number 1",
+              "title": "Count to One",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-1" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2"] },
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "Master Number 1",
+              "title": "Find One",
+              "gameType": "dragndrop",
+              "icon": { "set": "MaterialCommunityIcons", "name": "hand-pointing-right" },
+              "stages": [
+                { "correctNumber": "1", "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Number 2",
+              "title": "Two Objects",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-2-circle" },
+              "stages": [
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "1 and 2 Together",
+              "title": "Compare One and Two",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "compare" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2"] }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Practice 1 & 2",
+              "title": "Mix One and Two",
+              "gameType": "dragndrop",
+              "icon": { "set": "MaterialCommunityIcons", "name": "shuffle" },
+              "stages": [
+                { "correctNumber": "1", "choices": ["1", "2"] },
+                { "correctNumber": "2", "choices": ["1", "2"] },
+                { "correctNumber": "1", "choices": ["1", "2"] }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "Meet Number 3",
+              "title": "Three Objects",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-3-circle" },
+              "stages": [
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "Count 1, 2, 3",
+              "title": "Three Numbers Together",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "counter" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "1-3 Challenge",
+              "title": "Mixed Counting",
+              "gameType": "dragndrop",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctNumber": "2", "choices": ["1", "2", "3"] },
+                { "correctNumber": "1", "choices": ["1", "2", "3"] },
+                { "correctNumber": "3", "choices": ["1", "2", "3"] },
+                { "correctNumber": "2", "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "Counting Master 1-3",
+              "title": "Final Test",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2", "3"] }
+              ]
+            }
+          ]
+        },
+        "section2": {
+          "id": "section2",
+          "name": "Numbers 4-6",
+          "title": "Learning 4, 5, 6",
+          "description": "Build on 1-3 knowledge with larger numbers",
+          "sectionNumber": 2,
+          "targetConcepts": [4, 5, 6],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Recognize numbers 4-6",
+            "Count larger quantities",
+            "Review numbers 1-3"
+          ],
+          "spacedRepetitionStrategy": "Numbers 1-3 appear in review mini-tasks. Counting always includes earlier numbers.",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Review 1-3",
+              "title": "Quick Review",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "refresh" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["1", "2", "3"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "2", "3"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Meet Number 4",
+              "title": "Four Objects",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-4-circle" },
+              "stages": [
+                { "correctAnswer": "4", "correctCount": 4, "choices": ["3", "4", "5"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "Practice 1-4",
+              "title": "Count to Four",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "counter" },
+              "stages": [
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["2", "3", "4"] },
+                { "correctAnswer": "4", "correctCount": 4, "choices": ["2", "3", "4"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["2", "3", "4"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Number 5",
+              "title": "Five Objects",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-5-circle" },
+              "stages": [
+                { "correctAnswer": "5", "correctCount": 5, "choices": ["3", "4", "5"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "Practice 1-5",
+              "title": "Count to Five",
+              "gameType": "dragndrop",
+              "icon": { "set": "MaterialCommunityIcons", "name": "hand-pointing-right" },
+              "stages": [
+                { "correctNumber": "3", "choices": ["3", "4", "5"] },
+                { "correctNumber": "5", "choices": ["3", "4", "5"] },
+                { "correctNumber": "4", "choices": ["3", "4", "5"] }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Meet Number 6",
+              "title": "Six Objects",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "numeric-6-circle" },
+              "stages": [
+                { "correctAnswer": "6", "correctCount": 6, "choices": ["4", "5", "6"] }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "4, 5, 6 Together",
+              "title": "Practice New Numbers",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "compare" },
+              "stages": [
+                { "correctAnswer": "4", "correctCount": 4, "choices": ["4", "5", "6"] },
+                { "correctAnswer": "5", "correctCount": 5, "choices": ["4", "5", "6"] },
+                { "correctAnswer": "6", "correctCount": 6, "choices": ["4", "5", "6"] }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "Count 1-6",
+              "title": "All Six Numbers",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "counter" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "3", "5"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "3", "5"] },
+                { "correctAnswer": "5", "correctCount": 5, "choices": ["1", "3", "5"] },
+                { "correctAnswer": "6", "correctCount": 6, "choices": ["4", "5", "6"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "1-6 Challenge",
+              "title": "Mixed Counting Review",
+              "gameType": "dragndrop",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctNumber": "4", "choices": ["2", "4", "6"] },
+                { "correctNumber": "2", "choices": ["2", "4", "6"] },
+                { "correctNumber": "6", "choices": ["2", "4", "6"] },
+                { "correctNumber": "5", "choices": ["3", "5", "6"] },
+                { "correctNumber": "3", "choices": ["1", "3", "5"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "Counting Master 1-6",
+              "title": "Final Test",
+              "gameType": "counting",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "correctAnswer": "1", "correctCount": 1, "choices": ["1", "3", "5"] },
+                { "correctAnswer": "2", "correctCount": 2, "choices": ["2", "4", "6"] },
+                { "correctAnswer": "3", "correctCount": 3, "choices": ["1", "3", "5"] },
+                { "correctAnswer": "4", "correctCount": 4, "choices": ["2", "4", "6"] },
+                { "correctAnswer": "5", "correctCount": 5, "choices": ["3", "5", "6"] },
+                { "correctAnswer": "6", "correctCount": 6, "choices": ["4", "5", "6"] }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "colors": {
+      "name": "Colors",
+      "description": "Visual identification, matching, and simple naming of colors",
+      "sections": {
+        "section1": {
+          "id": "section1",
+          "name": "Primary Colors",
+          "title": "Learning Red, Blue, Yellow",
+          "description": "Introduce primary color recognition and matching",
+          "sectionNumber": 1,
+          "targetConcepts": ["red", "blue", "yellow"],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Visual identification",
+            "Matching",
+            "Simple naming"
+          ],
+          "spacedRepetitionStrategy": "Each level reuses all learned colors. No color appears only once.",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Meet Red",
+              "title": "Find Red Objects",
+              "gameType": "colorMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "palette" },
+              "stages": [
+                { "correctColor": "red", "choices": ["red", "blue", "yellow"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Meet Blue",
+              "title": "Find Blue Objects",
+              "gameType": "colorMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "palette" },
+              "stages": [
+                { "correctColor": "blue", "choices": ["blue", "red", "yellow"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "Red & Blue",
+              "title": "Practice Two Colors",
+              "gameType": "rocket",
+              "icon": { "set": "MaterialCommunityIcons", "name": "rocket" },
+              "stages": [
+                { "correctColor": "red", "choices": ["red", "blue"] },
+                { "correctColor": "blue", "choices": ["blue", "red"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Yellow",
+              "title": "Find Yellow Objects",
+              "gameType": "colorMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "palette" },
+              "stages": [
+                { "correctColor": "yellow", "choices": ["yellow", "red", "blue"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "Three Colors Mix",
+              "title": "Red, Blue, Yellow",
+              "gameType": "matching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "colors": ["red", "blue", "yellow", "green"] }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Color Rocket",
+              "title": "Fast Color Finding",
+              "gameType": "rocket",
+              "icon": { "set": "MaterialCommunityIcons", "name": "rocket-launch" },
+              "stages": [
+                { "correctColor": "red", "choices": ["red", "blue", "yellow"] },
+                { "correctColor": "blue", "choices": ["blue", "red", "yellow"] },
+                { "correctColor": "yellow", "choices": ["yellow", "red", "blue"] }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "Color Memory",
+              "title": "Match All Three",
+              "gameType": "matching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "cards" },
+              "stages": [
+                { "colors": ["red", "blue", "yellow", "orange"] }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "Color Choice",
+              "title": "Pick the Right Color",
+              "gameType": "colorMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "hand-pointing-up" },
+              "stages": [
+                { "correctColor": "red", "choices": ["red", "blue", "yellow"] },
+                { "correctColor": "blue", "choices": ["blue", "red", "yellow"] },
+                { "correctColor": "yellow", "choices": ["yellow", "red", "blue"] },
+                { "correctColor": "red", "choices": ["red", "blue", "yellow"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "Primary Color Challenge",
+              "title": "Mixed Review",
+              "gameType": "rocket",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctColor": "yellow", "choices": ["yellow", "red", "blue"] },
+                { "correctColor": "red", "choices": ["red", "blue", "yellow"] },
+                { "correctColor": "blue", "choices": ["blue", "red", "yellow"] },
+                { "correctColor": "yellow", "choices": ["yellow", "blue", "red"] },
+                { "correctColor": "red", "choices": ["red", "yellow", "blue"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "Primary Color Master",
+              "title": "Final Test",
+              "gameType": "matching",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "colors": ["red", "blue", "yellow", "green"] },
+                { "colors": ["red", "blue", "yellow", "orange"] }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "shapes": {
+      "name": "Shapes",
+      "description": "Shape recognition, real-world object association, and visual comparison",
+      "sections": {
+        "section1": {
+          "id": "section1",
+          "name": "Basic Shapes",
+          "title": "Learning Circle, Square, Triangle",
+          "description": "Introduce basic shape recognition and real-world associations",
+          "sectionNumber": 1,
+          "targetConcepts": ["circle", "square", "triangle"],
+          "totalLevels": 10,
+          "learningFocus": [
+            "Shape recognition",
+            "Real-world object association",
+            "Visual comparison"
+          ],
+          "spacedRepetitionStrategy": "Each level reuses all learned shapes. Progressive complexity from single to multiple shapes.",
+          "levels": [
+            {
+              "levelIndex": 1,
+              "name": "Meet Circle",
+              "title": "Round Shapes",
+              "gameType": "shapesMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "circle" },
+              "stages": [
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] }
+              ]
+            },
+            {
+              "levelIndex": 2,
+              "name": "Meet Square",
+              "title": "Four Equal Sides",
+              "gameType": "shapesMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "square" },
+              "stages": [
+                { "correctShape": "square", "choices": ["square", "circle", "triangle"] }
+              ]
+            },
+            {
+              "levelIndex": 3,
+              "name": "Circle & Square",
+              "title": "Two Shapes Together",
+              "gameType": "rocketShapes",
+              "icon": { "set": "MaterialCommunityIcons", "name": "rocket" },
+              "stages": [
+                { "correctShape": "circle", "choices": ["circle", "square"] },
+                { "correctShape": "square", "choices": ["square", "circle"] }
+              ]
+            },
+            {
+              "levelIndex": 4,
+              "name": "Meet Triangle",
+              "title": "Three Points",
+              "gameType": "shapesMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "triangle" },
+              "stages": [
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 5,
+              "name": "Three Shapes Mix",
+              "title": "Circle, Square, Triangle",
+              "gameType": "rocketShapes",
+              "icon": { "set": "MaterialCommunityIcons", "name": "shapes" },
+              "stages": [
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] },
+                { "correctShape": "square", "choices": ["square", "circle", "triangle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 6,
+              "name": "Shape Speed",
+              "title": "Fast Shape Finding",
+              "gameType": "rocketShapes",
+              "icon": { "set": "MaterialCommunityIcons", "name": "rocket-launch" },
+              "stages": [
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] },
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] },
+                { "correctShape": "square", "choices": ["square", "triangle", "circle"] },
+                { "correctShape": "circle", "choices": ["circle", "triangle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 7,
+              "name": "Shape Patterns",
+              "title": "Identify Shapes in Order",
+              "gameType": "shapesMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "pattern" },
+              "stages": [
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] },
+                { "correctShape": "square", "choices": ["square", "circle", "triangle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "square", "circle"] },
+                { "correctShape": "circle", "choices": ["circle", "triangle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 8,
+              "name": "Shape Match",
+              "title": "Match Three Shapes",
+              "gameType": "rocketShapes",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctShape": "square", "choices": ["square", "circle", "triangle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "square", "circle"] },
+                { "correctShape": "circle", "choices": ["circle", "triangle", "square"] },
+                { "correctShape": "square", "choices": ["square", "triangle", "circle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 9,
+              "name": "Shape Challenge",
+              "title": "Mixed Review",
+              "gameType": "shapesMultipleChoice",
+              "icon": { "set": "MaterialCommunityIcons", "name": "puzzle" },
+              "stages": [
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] },
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] },
+                { "correctShape": "square", "choices": ["square", "triangle", "circle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "square", "circle"] },
+                { "correctShape": "circle", "choices": ["circle", "triangle", "square"] }
+              ]
+            },
+            {
+              "levelIndex": 10,
+              "name": "Shape Master",
+              "title": "Final Test",
+              "gameType": "rocketShapes",
+              "icon": { "set": "MaterialCommunityIcons", "name": "star" },
+              "stages": [
+                { "correctShape": "circle", "choices": ["circle", "square", "triangle"] },
+                { "correctShape": "square", "choices": ["square", "circle", "triangle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "circle", "square"] },
+                { "correctShape": "circle", "choices": ["circle", "triangle", "square"] },
+                { "correctShape": "square", "choices": ["square", "triangle", "circle"] },
+                { "correctShape": "triangle", "choices": ["triangle", "square", "circle"] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -239,8 +239,6 @@ const UpdateLevel = () => {
         const initialData = {
           levelName: selectedLevel.name,
           levelTitle: selectedLevel.title,
-          iconSet: selectedLevel.icon.set,
-          iconName: selectedLevel.icon.name,
           stages: selectedLevel.stages || [],
         };
 

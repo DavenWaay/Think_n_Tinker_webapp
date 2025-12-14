@@ -8,7 +8,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard-header">
         <h1>Think n' Tinker CMS</h1>
-        <p>Content Management System for Educational Games</p>
+        <p>Content Management System for Think n Tinker</p>
       </div>
 
       <div className="dashboard-grid">
