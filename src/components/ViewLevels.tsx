@@ -81,7 +81,7 @@ const ViewLevels = () => {
       <div className="view-levels">
         <div className="view-levels-header">
           <h1>View Levels (Read-Only)</h1>
-          <p>Browse all levels organized by subject and section</p>
+          <p className="view-levels-subtitle">Browse all levels organized by subject and section</p>
         </div>
 
         {error && <div className="error-message">{error}</div>}

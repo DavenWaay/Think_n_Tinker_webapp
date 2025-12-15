@@ -19,6 +19,12 @@
   margin: 0;
 }
 
+.view-levels-subtitle {
+  color: #34495e;
+  font-size: 1rem;
+  margin: 0.5rem 0 0 0;
+}
+
 .subject-selection {
   margin: 2rem 0;
 }
